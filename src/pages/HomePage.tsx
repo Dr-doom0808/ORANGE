@@ -1,11 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Hero from '../components/sections/Hero';
-import { ArrowRight, Play, Film, Users, Star } from 'lucide-react';
+import { ArrowRight, Play, Film, Users, Star, X } from 'lucide-react';
 import Container from '../components/ui/Container';
 import Button from '../components/ui/Button';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import thumbnail1 from '../assets/thumbnail/1.jpg';
+import thumbnail2 from '../assets/thumbnail/2.jpg';
+
+interface Project {
+  title: string;
+  category: string;
+  image: string;
+  videoUrl: string;
+  isYoutube: boolean;
+}
 
 const HomePage = () => {
+  const navigate = useNavigate();
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
+  const latestProjects: Project[] = [
+    {
+      title: "Ali_Abdal style",
+      category: "Shorts",
+      image: thumbnail1,
+      videoUrl: "https://youtube.com/embed/WVIBnrQdado?autoplay=1&mute=1",
+      isYoutube: true
+    },
+    {
+      title: "Coaching",
+      category: "Shorts",
+      image: thumbnail2,
+      videoUrl: "https://youtube.com/embed/bUUM2q5fvhg?autoplay=1&mute=1",
+      isYoutube: true
+    }
+  ];
+
+  const handleProjectClick = (project: Project) => {
+    setSelectedProject(project);
+  };
+
   return (
     <div>
       <Hero />
@@ -21,38 +55,26 @@ const HomePage = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            {/* Video Preview Cards */}
-            {[
-              {
-                title: "Brand Story",
-                category: "Motion Graphics",
-                image: "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg"
-              },
-              {
-                title: "Social Campaign",
-                category: "Shorts",
-                image: "https://images.pexels.com/photos/3944454/pexels-photo-3944454.jpeg",
-                isVertical: true
-              }
-            ].map((project, index) => (
+            {latestProjects.map((project, index) => (
               <div 
                 key={index} 
-                className={`group relative overflow-hidden rounded-lg ${
-                  project.isVertical ? 'aspect-[9/16]' : 'aspect-video'
-                }`}
+                className="group relative overflow-hidden rounded-2xl aspect-[9/16] cursor-pointer"
+                onClick={() => handleProjectClick(project)}
               >
                 <img 
                   src={project.image} 
                   alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <h3 className="text-xl font-semibold text-white mb-2">{project.title}</h3>
-                    <p className="text-orange-400">{project.category}</p>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-80 transition-opacity group-hover:opacity-100">
+                  <div className="absolute bottom-0 left-0 right-0 p-8">
+                    <h3 className="text-2xl font-semibold text-white mb-2">{project.title}</h3>
+                    <p className="text-orange-400 text-lg">{project.category}</p>
                   </div>
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <Play className="w-16 h-16 text-orange-500" />
+                    <div className="w-20 h-20 rounded-full bg-orange-500 flex items-center justify-center text-white transform transition-transform group-hover:scale-110">
+                      <Play className="w-8 h-8 ml-1" />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -139,6 +161,36 @@ const HomePage = () => {
           </div>
         </Container>
       </section>
+
+      {/* Video Modal */}
+      {selectedProject && (
+        <div 
+          className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4" 
+          onClick={() => setSelectedProject(null)}
+        >
+          <div className="max-w-4xl w-full relative">
+            <button 
+              onClick={() => setSelectedProject(null)}
+              className="absolute -top-12 right-0 text-white hover:text-orange-500 transition-colors"
+            >
+              <X className="w-8 h-8" />
+            </button>
+            <div className="relative aspect-video">
+              <iframe
+                src={selectedProject.videoUrl}
+                title={selectedProject.title}
+                className="w-full h-full rounded-lg shadow-2xl"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+            <div className="mt-6 text-white">
+              <h3 className="text-2xl font-semibold">{selectedProject.title}</h3>
+              <p className="text-orange-400 capitalize mt-2">{selectedProject.category}</p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

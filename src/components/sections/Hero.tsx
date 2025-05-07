@@ -1,10 +1,12 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Button from '../ui/Button';
 import Container from '../ui/Container';
-import { Play } from 'lucide-react';
+import { Play, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Hero: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [showShowreel, setShowShowreel] = useState(false);
 
   useEffect(() => {
     if (videoRef.current) {
@@ -44,8 +46,15 @@ const Hero: React.FC = () => {
             Professional video editing that elevates your brand. From commercials to social media content, we bring your creative vision to life.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg">Get Started</Button>
-            <Button variant="outline" size="lg" className="group">
+            <Link to="/contact">
+              <Button size="lg">Get Started</Button>
+            </Link>
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="group"
+              onClick={() => setShowShowreel(true)}
+            >
               <Play className="w-5 h-5 mr-2 transition-transform group-hover:scale-110" /> Watch Showreel
             </Button>
           </div>
@@ -58,6 +67,32 @@ const Hero: React.FC = () => {
           <div className="w-1 h-3 bg-white rounded-full animate-pulse"></div>
         </div>
       </div>
+
+      {/* Showreel Modal */}
+      {showShowreel && (
+        <div 
+          className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4" 
+          onClick={() => setShowShowreel(false)}
+        >
+          <div className="max-w-4xl w-full relative">
+            <button 
+              onClick={() => setShowShowreel(false)}
+              className="absolute -top-12 right-0 text-white hover:text-orange-500 transition-colors"
+            >
+              <X className="w-8 h-8" />
+            </button>
+            <div className="relative aspect-video">
+              <iframe
+                src="https://youtube.com/embed/WVIBnrQdado?autoplay=1&mute=1"
+                title="Showreel"
+                className="w-full h-full rounded-lg shadow-2xl"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

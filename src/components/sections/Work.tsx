@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Container from '../ui/Container';
 import { Play, X } from 'lucide-react';
-import workVideo from '../../assets/work.mp4';
 import thumbnail1 from '../../assets/thumbnail/1.jpg';
 import thumbnail2 from '../../assets/thumbnail/2.jpg';
 import thumbnail3 from '../../assets/thumbnail/3.jpg';
