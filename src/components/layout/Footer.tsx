@@ -2,10 +2,11 @@ import React from 'react';
 import { Instagram, Facebook, Linkedin, Mail, MapPin, Phone } from 'lucide-react';
 import Container from '../ui/Container';
 import logo from '../../assets/logo.png';
+import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-zinc-900 text-zinc-400 pt-16 pb-8">
+    <footer className="bg-zinc-900 text-zinc-400 pt-16 pb-8 relative">
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
@@ -32,24 +33,23 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="text-white font-semibold mb-6">Quick Links</h3>
             <ul className="space-y-3">
-              <li><a href="#" className="hover:text-orange-400 transition-colors">Home</a></li>
-              <li><a href="#services" className="hover:text-orange-400 transition-colors">Services</a></li>
-              <li><a href="#work" className="hover:text-orange-400 transition-colors">Our Work</a></li>
-              <li><a href="#process" className="hover:text-orange-400 transition-colors">Process</a></li>
-              <li><a href="#pricing" className="hover:text-orange-400 transition-colors">Pricing</a></li>
-              <li><a href="#about" className="hover:text-orange-400 transition-colors">About Us</a></li>
+              <li><Link to="/" className="hover:text-orange-400 transition-colors">Home</Link></li>
+              <li><Link to="/about" className="hover:text-orange-400 transition-colors">About</Link></li>
+              <li><Link to="/showcase" className="hover:text-orange-400 transition-colors">Showcase</Link></li>
+              <li><Link to="/services" className="hover:text-orange-400 transition-colors">Services</Link></li>
+              <li><Link to="/contact" className="hover:text-orange-400 transition-colors">Contact</Link></li>
             </ul>
           </div>
           
           <div>
             <h3 className="text-white font-semibold mb-6">Services</h3>
             <ul className="space-y-3">
-              <li><a href="#" className="hover:text-orange-400 transition-colors">Commercial Editing</a></li>
-              <li><a href="#" className="hover:text-orange-400 transition-colors">Social Media Content</a></li>
-              <li><a href="#" className="hover:text-orange-400 transition-colors">Documentary Films</a></li>
-              <li><a href="#" className="hover:text-orange-400 transition-colors">Wedding Videos</a></li>
-              <li><a href="#" className="hover:text-orange-400 transition-colors">Motion Graphics</a></li>
-              <li><a href="#" className="hover:text-orange-400 transition-colors">Color Grading</a></li>
+              <li><Link to="/services" className="hover:text-orange-400 transition-colors">Video Editing</Link></li>
+              <li><Link to="/services" className="hover:text-orange-400 transition-colors">Motion Graphics</Link></li>
+              <li><Link to="/services" className="hover:text-orange-400 transition-colors">Social Media</Link></li>
+              <li><Link to="/services" className="hover:text-orange-400 transition-colors">Content Creation</Link></li>
+              <li><Link to="/services" className="hover:text-orange-400 transition-colors">Brand Videos</Link></li>
+              <li><Link to="/services" className="hover:text-orange-400 transition-colors">YouTube</Link></li>
             </ul>
           </div>
           
@@ -58,7 +58,7 @@ const Footer: React.FC = () => {
             <ul className="space-y-4">
               <li className="flex items-start">
                 <MapPin className="h-5 w-5 mr-3 text-orange-500 flex-shrink-0 mt-0.5" />
-                <span>123 Creative St, Media City, Mumbai</span>
+                <span> Mumbai</span>
               </li>
               <li className="flex items-center">
                 <Phone className="h-5 w-5 mr-3 text-orange-500 flex-shrink-0" />

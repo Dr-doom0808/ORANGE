@@ -15,7 +15,7 @@ function App() {
     <Router>
       <div className="bg-black text-white min-h-screen flex flex-col">
         <Header />
-        <main className="flex-grow">
+        <main className="flex-grow relative">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<AboutPage />} />
