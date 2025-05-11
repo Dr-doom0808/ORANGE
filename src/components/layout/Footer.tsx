@@ -1,7 +1,7 @@
 import React from 'react';
 import { Instagram, Facebook, Linkedin, Mail, MapPin, Phone } from 'lucide-react';
 import Container from '../ui/Container';
-import logo from '../../assets/logo.png';
+import logo from '../../assets/1.svg';
 import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
@@ -11,7 +11,11 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
             <div className="flex items-center mb-6">
-              <img src={logo} alt="Orangecut Media Logo" className="h-8 w-auto" />
+              <img 
+                src={logo} 
+                alt="Orangecut Media Logo" 
+                className="h-8 w-auto mix-blend-normal object-contain [background:transparent]" 
+              />
               <span className="ml-2 text-xl font-bold tracking-tight text-white">Orangecut Media</span>
             </div>
             <p className="mb-6">

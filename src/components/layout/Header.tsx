@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import Container from '../ui/Container';
-import logo from '../../assets/logo.png'; // Import the logo
+import logo from '../../assets/logo1.svg'; // Import the SVG logo
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -36,7 +36,11 @@ const Header: React.FC = () => {
       <Container>
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center">
-            <img src={logo} alt="Orangecut Media Logo" className="h-8 w-auto" />
+            <img 
+              src={logo} 
+              alt="Orangecut Media Logo" 
+              className="h-8 w-auto mix-blend-normal object-contain [background:transparent]" 
+            />
             <span className="ml-2 text-xl font-bold tracking-tight text-white">Orangecut Media</span>
           </Link>
           
