@@ -1,21 +1,48 @@
 import React from 'react';
 import Container from '../ui/Container';
 import { Camera, Film, Award } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const About = () => {
   return (
-    <section id="about" className="py-24 bg-black">
-      <Container>
-        <div className="max-w-4xl mx-auto text-center mb-16">
-          <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent">
+    <section id="about" className="py-24 bg-black relative overflow-hidden">
+      {/* Background gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-zinc-950 via-black to-zinc-950">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-orange-500/10 via-transparent to-transparent" />
+      </div>
+
+      <Container className="relative">
+        <div className="max-w-4xl mx-auto text-center mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="inline-block px-4 py-1.5 rounded-full bg-orange-500/20 text-orange-300 text-sm font-medium mb-6"
+          >
+            About Us
+          </motion.div>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent"
+          >
             Fresh Perspective in Video Production
-          </h2>
-          <p className="text-gray-300 text-lg">
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-zinc-400 text-lg leading-relaxed"
+          >
             At Orangecut Media, we bring a fresh, innovative approach to video production. As an emerging creative agency, we combine cutting-edge techniques with passionate storytelling.
-          </p>
+          </motion.p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-12">
+        <div className="grid md:grid-cols-3 gap-8">
           {[
             {
               icon: <Camera className="w-12 h-12 text-orange-500" />,
@@ -33,17 +60,26 @@ const About = () => {
               description: "Committed to delivering high-quality content that meets professional industry standards."
             }
           ].map((feature, index) => (
-            <div key={index} className="text-center p-6 rounded-lg bg-gray-900 hover:bg-gray-800 transition-colors">
-              <div className="flex justify-center mb-4">
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="group bg-zinc-900/50 backdrop-blur-sm p-8 rounded-2xl border border-zinc-800 hover:border-orange-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/5 hover:-translate-y-1"
+            >
+              <div className="flex justify-center mb-6">
+                <div className="p-4 bg-zinc-800/50 rounded-xl group-hover:bg-orange-500/10 transition-colors duration-300">
                 {feature.icon}
+                </div>
               </div>
-              <h3 className="text-xl font-semibold mb-3 text-white">
+              <h3 className="text-xl font-semibold text-center mb-3 text-white group-hover:text-orange-500 transition-colors duration-300">
                 {feature.title}
               </h3>
-              <p className="text-gray-400">
+              <p className="text-zinc-400 text-center leading-relaxed">
                 {feature.description}
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
 

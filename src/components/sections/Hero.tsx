@@ -3,6 +3,7 @@ import Container from '../ui/Container';
 import { Play, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { BackgroundBeamsWithCollision } from '../ui/background-beam';
 
 const Hero: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -34,13 +35,20 @@ const Hero: React.FC = () => {
         </video>
       </div>
       
+      {/* Background Beams */}
+      <div className="absolute inset-0 z-10">
+        <BackgroundBeamsWithCollision className="h-full bg-transparent">
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70" />
+        </BackgroundBeamsWithCollision>
+      </div>
+      
       <Container className="relative z-20 pt-12 md:pt-20">
         <div className="max-w-3xl mx-auto text-center px-4">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-block px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 text-sm font-medium mb-4 md:mb-6"
+            className="inline-block px-3 py-1 rounded-full bg-orange-500/20 text-orange-300 text-sm font-medium mb-4 md:mb-6"
           >
             Premium Video Editing Services
           </motion.div>
@@ -51,7 +59,7 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight"
           >
-            Transform Your <span className="text-indigo-400">Vision</span> Into Captivating <span className="text-indigo-400">Stories</span>
+            Transform Your <span className="bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">Vision</span> Into Captivating <span className="bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">Stories</span>
           </motion.h1>
 
           <motion.p 
@@ -71,13 +79,13 @@ const Hero: React.FC = () => {
           >
             <Link to="/contact" className="w-full sm:w-auto">
               <button 
-                className="w-full sm:w-auto bg-indigo-500 hover:bg-indigo-600 text-white text-sm md:text-base py-2 md:py-3 px-5 md:px-6 rounded-full font-medium transition-all duration-300 hover:scale-105 active:scale-95"
+                className="w-full sm:w-auto bg-orange-500 hover:bg-orange-600 text-white text-sm md:text-base py-2 md:py-3 px-5 md:px-6 rounded-full font-medium transition-all duration-300 hover:scale-105 active:scale-95"
               >
                 Get Started
               </button>
             </Link>
             <button 
-              className="w-full sm:w-auto border border-indigo-500 text-indigo-400 hover:bg-indigo-500/10 text-sm md:text-base py-2 md:py-3 px-5 md:px-6 rounded-full font-medium transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2"
+              className="w-full sm:w-auto border border-orange-500 text-orange-400 hover:bg-orange-500/10 text-sm md:text-base py-2 md:py-3 px-5 md:px-6 rounded-full font-medium transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2"
               onClick={() => setShowShowreel(true)}
             >
               <Play className="w-4 h-4 md:w-5 md:h-5 transition-transform group-hover:scale-110" /> 
@@ -115,7 +123,7 @@ const Hero: React.FC = () => {
           >
             <button 
               onClick={() => setShowShowreel(false)}
-              className="absolute -top-10 md:-top-12 right-0 text-white hover:text-indigo-400 transition-colors p-1.5 md:p-2"
+              className="absolute -top-10 md:-top-12 right-0 text-white hover:text-orange-400 transition-colors p-1.5 md:p-2"
             >
               <X className="w-5 h-5 md:w-8 md:h-8" />
             </button>

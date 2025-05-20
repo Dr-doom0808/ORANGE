@@ -2,6 +2,12 @@ import React from 'react';
 import Container from '../ui/Container';
 import { motion } from 'framer-motion';
 import { Linkedin, Instagram, Twitter } from 'lucide-react';
+import aditya from '../../assets/TEAM/aditya.jpeg';
+import chirag from '../../assets/TEAM/chirag.jpeg';
+import shlok from '../../assets/TEAM/shlok.jpg';
+import tarun from '../../assets/TEAM/tarun.jpeg';
+import biswajit from '../../assets/TEAM/biswajit.jpeg';
+import mainak from '../../assets/TEAM/mainak.jpeg';
 
 interface TeamMember {
   name: string;
@@ -19,33 +25,33 @@ const Team: React.FC = () => {
     {
       name: "Aditya Jadhav",
       role: "Founder",
-      image: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg"
+      image: aditya,
     },
     {
       name: "Chirag Parihar",
       role: "Co-founder",
-      image: "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg"
+      image: chirag,
     },
     {
       name: "Shlok Singh",
-      role: "Social Media/Developer Head",
-      image: "https://images.pexels.com/photos/2379006/pexels-photo-2379006.jpeg"
+      role: "Developer & Social-Media Head",
+      image: shlok,
     },
     {
       name: "Tarun",
-      role: "Data/Scripting Head",
-      image: "https://images.pexels.com/photos/2379007/pexels-photo-2379007.jpeg"
+      role: "Data & Scripting Head",
+      image: tarun,
     },
     {
       name: "Biswajit",
       role: "Editing Team",
-      image: "https://images.pexels.com/photos/2379008/pexels-photo-2379008.jpeg"
+      image: biswajit,
     },
     {
       name: "Mainak Sen",
       role: "Editing Team",
-      image: "https://images.pexels.com/photos/2379009/pexels-photo-2379009.jpeg"
-    }
+      image: mainak,
+    },
   ];
 
   return (
@@ -132,4 +138,4 @@ const Team: React.FC = () => {
   );
 };
 
-export default Team; 
+export default Team;

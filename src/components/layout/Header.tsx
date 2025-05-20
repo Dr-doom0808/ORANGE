@@ -1,89 +1,112 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import Container from '../ui/Container';
-import logo from '../../assets/logo1.svg'; // Import the SVG logo
+import logo from '../../assets/logo.svg';
+import orangeText from '../../assets/orange1.svg';
+import AnimatedButton from '../ui/AnimatedButton';
+import {
+  Navbar,
+  NavBody,
+  NavItems,
+  NavbarLogo,
+  NavbarButton,
+  MobileNav,
+  MobileNavHeader,
+  MobileNavMenu,
+  MobileNavToggle,
+} from '../ui/navbar-resize';
 
-const Header: React.FC = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+interface HeaderProps {
+  isMenuOpen: boolean;
+  setIsMenuOpen: (isOpen: boolean) => void;
+}
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
+const Header: React.FC<HeaderProps> = ({ isMenuOpen, setIsMenuOpen }) => {
   const navItems = [
-    { name: 'Home', href: '/' },
-    { name: 'About Us', href: '/about' },
-    { name: 'Services', href: '/services' },
-    { name: 'Showcase', href: '/showcase' },
-    { name: 'FAQ\'s', href: '/faq' },
-    { name: 'Reviews', href: '/reviews' },
-    { name: 'Contact Us', href: '/contact' },
+    { name: 'About Us', link: '/about' },
+    { name: 'Services', link: '/services' },
+    { name: 'Showcase', link: '/showcase' },
+    { name: 'FAQ\'s', link: '/faq' },
+    { name: 'Reviews', link: '/reviews' },
   ];
 
   return (
-    <header 
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-black/90 backdrop-blur-sm py-4' : 'bg-transparent py-6'
-      }`}
-    >
-      <Container>
-        <div className="flex items-center justify-between">
-          <Link to="/" className="flex items-center">
-            <img 
-              src={logo} 
-              alt="Orangecut Media Logo" 
-              className="h-8 w-auto mix-blend-normal object-contain [background:transparent]" 
-            />
-            <span className="ml-2 text-xl font-bold tracking-tight text-white">Orangecut Media</span>
-          </Link>
-          
-          <nav className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                to={item.href}
-                className="text-sm font-medium text-white hover:text-orange-400 transition-colors"
-              >
-                {item.name}
-              </Link>
-            ))}
-          </nav>
-          
-          <button
-            className="md:hidden text-white"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+    <Navbar>
+      <NavBody>
+        <div className="relative z-[70]">
+          <a 
+            href="/" 
+            className="flex items-center cursor-pointer hover:opacity-80 transition-opacity"
+            style={{ pointerEvents: 'auto' }}
           >
-            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
+            <div className="h-10 w-10 flex items-center justify-center">
+              <img 
+                src={logo} 
+                alt="Orangecut Media Logo" 
+                className="h-full w-full object-contain" 
+              />
+            </div>
+            <div className="h-8 w-28 flex items-center justify-center -ml-2 mt-3 ml-2.4">
+              <img 
+                src={orangeText} 
+                alt="Orangecut Media" 
+                className="h-full w-full object-contain" 
+              />
+            </div>
+          </a>
         </div>
-      </Container>
-      
-      {isMenuOpen && (
-        <div className="md:hidden bg-zinc-900 py-4">
-          <Container>
-            <nav className="flex flex-col space-y-4">
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className="text-base font-medium text-white hover:text-orange-400 transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </nav>
-          </Container>
-        </div>
-      )}
-    </header>
+        
+        <NavItems items={navItems} />
+        
+        <AnimatedButton href="/contact">
+          Get Started
+        </AnimatedButton>
+      </NavBody>
+
+      <MobileNav>
+        <MobileNavHeader>
+          <div className="relative z-[70]">
+            <a 
+              href="/" 
+              className="flex items-center cursor-pointer hover:opacity-80 transition-opacity"
+              style={{ pointerEvents: 'auto' }}
+            >
+              <div className="h-10 w-10 flex items-center justify-center">
+                <img 
+                  src={logo} 
+                  alt="Orangecut Media Logo" 
+                  className="h-full w-full object-contain" 
+                />
+              </div>
+              <div className="h-8 w-28 flex items-center justify-center -ml-2 mt-3 ml-6">
+                <img 
+                  src={orangeText} 
+                  alt="Orangecut Media" 
+                  className="h-full w-full object-contain" 
+                />
+              </div>
+            </a>
+          </div>
+          <MobileNavToggle isOpen={isMenuOpen} onClick={() => setIsMenuOpen(!isMenuOpen)} />
+        </MobileNavHeader>
+        <MobileNavMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)}>
+          {navItems.map((item) => (
+            <Link
+              key={item.name}
+              to={item.link}
+              className="text-base font-medium text-white hover:text-orange-400 transition-colors"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              {item.name}
+            </Link>
+          ))}
+          <AnimatedButton href="/contact" className="mt-4">
+            Get Started
+          </AnimatedButton>
+        </MobileNavMenu>
+      </MobileNav>
+    </Navbar>
   );
 };
 

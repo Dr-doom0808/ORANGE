@@ -195,7 +195,7 @@ const Work: React.FC = () => {
         >
           {filteredProjects.map((project, index) => (
             <motion.div 
-              key={project.id}
+              key={project.id} 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -230,14 +230,14 @@ const Work: React.FC = () => {
         </motion.div>
         
         <AnimatePresence>
-          {selectedProject && (
+        {selectedProject && (
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4" 
-              onClick={() => setSelectedProject(null)}
-            >
+            onClick={() => setSelectedProject(null)}
+          >
               <motion.div 
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
@@ -250,10 +250,10 @@ const Work: React.FC = () => {
                 >
                   <X className="w-6 h-6 md:w-8 md:h-8" />
                 </button>
-                <div className={`relative ${
+              <div className={`relative ${
                   selectedProject.isYoutube ? 'aspect-video' : 
                   selectedProject.category === 'shorts' ? 'aspect-[9/16] max-w-[240px] mx-auto' : 'aspect-video'
-                }`}>
+              }`}>
                   {selectedProject.isYoutube ? (
                     <iframe
                       src={selectedProject.videoUrl}
@@ -263,14 +263,14 @@ const Work: React.FC = () => {
                       allowFullScreen
                     />
                   ) : (
-                    <video 
-                      src={selectedProject.videoUrl} 
-                      controls 
-                      autoPlay 
+                <video 
+                  src={selectedProject.videoUrl} 
+                  controls 
+                  autoPlay 
                       className="w-full h-full object-cover rounded-lg shadow-2xl"
-                    />
+                />
                   )}
-                </div>
+              </div>
                 <motion.div 
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -281,7 +281,7 @@ const Work: React.FC = () => {
                 </motion.div>
               </motion.div>
             </motion.div>
-          )}
+        )}
         </AnimatePresence>
       </Container>
     </section>

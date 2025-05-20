@@ -18,7 +18,7 @@ const ShowcasePage = () => {
             transition={{ duration: 0.5 }}
             className="max-w-4xl mx-auto text-center relative z-10 px-4"
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">
               Our Creative Portfolio
             </h1>
             <p className="text-lg md:text-xl text-zinc-400 mb-6 md:mb-8">
@@ -36,7 +36,7 @@ const ShowcasePage = () => {
               </div>
               <div className="flex items-center gap-2 text-zinc-400 text-sm md:text-base">
                 <Users className="w-4 h-4 md:w-5 md:h-5 text-orange-500" />
-                <span>Client Satisfaction</span>
+                <span>Expert Team</span>
               </div>
               <div className="flex items-center gap-2 text-zinc-400 text-sm md:text-base">
                 <Clock className="w-4 h-4 md:w-5 md:h-5 text-orange-500" />
@@ -94,7 +94,7 @@ const ShowcasePage = () => {
             transition={{ duration: 0.5 }}
             className="max-w-3xl mx-auto text-center px-4"
           >
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6">Ready to Create Something Amazing?</h2>
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">Ready to Create Something Amazing?</h2>
             <p className="text-zinc-400 mb-6 md:mb-8 text-sm md:text-base">
               Let's collaborate on your next video project. Our team is ready to bring your vision to life with professional editing and creative storytelling.
             </p>

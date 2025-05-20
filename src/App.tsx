@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
@@ -11,11 +11,14 @@ import ReviewsPage from './pages/ReviewsPage';
 import ContactPage from './pages/ContactPage';
 
 function App() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   return (
     <Router>
       <div className="bg-black text-white min-h-screen flex flex-col">
-        <Header />
-        <main className="flex-grow relative">
+        <Header isMenuOpen={isMobileMenuOpen} setIsMenuOpen={setIsMobileMenuOpen} />
+        {isMobileMenuOpen && <div className="h-screen md:h-0"></div>}
+        <main className={`flex-grow relative`}>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<AboutPage />} />
