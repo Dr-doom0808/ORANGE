@@ -1,7 +1,7 @@
 import React from 'react';
 import Container from '../components/ui/Container';
 import { motion } from 'framer-motion';
-import { ArrowRight, Play, Star, Users, Clock } from 'lucide-react';
+import { ArrowRight, Play, Star, Users, Clock, Target, Award, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Team from '../components/sections/Team';
 
@@ -18,7 +18,7 @@ const AboutPage = () => {
             transition={{ duration: 0.5 }}
             className="max-w-4xl mx-auto text-center relative z-10 px-4"
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">
               About Orange Cut Media
             </h1>
             <p className="text-lg md:text-xl text-zinc-400 mb-6 md:mb-8">
@@ -57,10 +57,47 @@ const AboutPage = () => {
             transition={{ duration: 0.5 }}
             className="max-w-3xl mx-auto text-center px-4"
           >
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6">Our Mission</h2>
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">Our Mission</h2>
             <p className="text-zinc-400 mb-6 md:mb-8 text-sm md:text-base">
               At Orange Cut Media, we strive to create engaging and high-quality video content that helps businesses and individuals connect with their audience. Our mission is to transform ideas into compelling visual stories that leave a lasting impact.
             </p>
+            
+            <div className="grid md:grid-cols-3 gap-6 mt-12">
+              {[
+                {
+                  icon: <Target className="w-8 h-8 text-orange-500" />,
+                  title: "Our Vision",
+                  description: "To be the leading creative force in video production, setting new standards in visual storytelling."
+                },
+                {
+                  icon: <Heart className="w-8 h-8 text-orange-500" />,
+                  title: "Our Values",
+                  description: "Creativity, excellence, and client satisfaction drive everything we do."
+                },
+                {
+                  icon: <Award className="w-8 h-8 text-orange-500" />,
+                  title: "Our Promise",
+                  description: "Delivering exceptional quality and service that exceeds expectations."
+                }
+              ].map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="bg-zinc-900/50 backdrop-blur-sm p-6 rounded-xl border border-zinc-800 hover:border-orange-500/50 transition-all duration-300"
+                >
+                  <div className="flex justify-center mb-4">
+                    <div className="p-3 bg-orange-500/10 rounded-lg">
+                      {item.icon}
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2 text-white">{item.title}</h3>
+                  <p className="text-zinc-400 text-sm">{item.description}</p>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
         </Container>
       </section>
@@ -78,7 +115,7 @@ const AboutPage = () => {
             transition={{ duration: 0.5 }}
             className="max-w-3xl mx-auto text-center px-4"
           >
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6">Ready to Create Something Amazing?</h2>
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">Ready to Create Something Amazing?</h2>
             <p className="text-zinc-400 mb-6 md:mb-8 text-sm md:text-base">
               Let's collaborate on your next video project. Our team is ready to bring your vision to life with professional editing and creative storytelling.
             </p>

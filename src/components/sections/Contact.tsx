@@ -41,7 +41,7 @@ const Contact: React.FC = () => {
               <p className="text-zinc-400 mb-8 text-base">
                 Ready to bring your video project to life? Contact us today to discuss your needs and how we can help elevate your visual content.
               </p>
-
+              
               <div className="space-y-4 mb-8 max-w-md">
                 <a 
                   href="mailto:orangecutmedia@gmail.com" 
@@ -101,7 +101,7 @@ const Contact: React.FC = () => {
                 </a>
               </div>
             </div>
-
+            
             <div className="bg-zinc-900 rounded-2xl p-8 lg:p-10">
               <h3 className="text-2xl font-semibold text-white mb-6">Send us a message</h3>
               

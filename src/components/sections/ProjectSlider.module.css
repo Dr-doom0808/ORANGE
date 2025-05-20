@@ -1,0 +1,194 @@
+.project-slider {
+  height: 32rem;
+  padding: 1rem 0;
+  position: relative;
+  cursor: grab;
+}
+
+.project-slider:active {
+  cursor: grabbing;
+}
+
+@media (max-width: 768px) {
+  .project-slider {
+    height: 28rem;
+    padding: 0.5rem 0;
+  }
+}
+
+.project-slider :global(.swiper-slide) {
+  width: 22rem;
+  height: 28rem;
+  position: relative;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0.4;
+  transform: scale(0.85);
+  filter: blur(1px);
+}
+
+.project-slider :global(.swiper-slide-active) {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 2;
+  filter: blur(0);
+  box-shadow: 0 0 30px rgba(249, 115, 22, 0.15);
+}
+
+.project-slider :global(.swiper-slide-prev),
+.project-slider :global(.swiper-slide-next) {
+  opacity: 0.7;
+  transform: scale(0.9);
+  filter: blur(0.5px);
+}
+
+@media (max-width: 768px) {
+  .project-slider :global(.swiper-slide) {
+    width: 18rem !important;
+    height: 24rem !important;
+  }
+  
+  .project-slider :global(.swiper-slide-active) {
+    transform: scale(1);
+  }
+  
+  .project-slider :global(.swiper-slide-prev),
+  .project-slider :global(.swiper-slide-next) {
+    opacity: 0.7;
+    transform: scale(0.95);
+  }
+}
+
+.project-slider :global(.swiper-slide-shadow-left),
+.project-slider :global(.swiper-slide-shadow-right) {
+  display: none;
+}
+
+/* Hide navigation buttons on all screens */
+.slider-nav {
+  display: none;
+}
+
+/* Modern Navigation Buttons */
+.slider-nav {
+  position: absolute;
+  bottom: -3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1.5rem;
+  z-index: 10;
+}
+
+.nav-button {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 1rem;
+  background: rgba(249, 115, 22, 0.1);
+  border: 2px solid rgba(249, 115, 22, 0.3);
+  color: #f97316;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(8px);
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, transparent, rgba(249, 115, 22, 0.1), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s;
+}
+
+.nav-button:hover::before {
+  transform: translateX(100%);
+}
+
+.nav-button:hover {
+  background: rgba(249, 115, 22, 0.2);
+  border-color: #f97316;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(249, 115, 22, 0.2);
+}
+
+.nav-button:active {
+  transform: translateY(-1px);
+}
+
+.nav-button svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.nav-button:hover svg {
+  transform: scale(1.2);
+  color: #fff;
+}
+
+/* Gradient Overlay */
+.gradient-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-slider :global(.swiper-slide):hover .gradient-overlay {
+  opacity: 1;
+}
+
+/* Play Button Animation */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(249, 115, 22, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(249, 115, 22, 0);
+  }
+}
+
+.project-slider :global(.swiper-slide-active:hover) .play-button {
+  animation: pulse 2s infinite;
+}
+
+/* Custom Pagination */
+.project-slider :global(.swiper-pagination) {
+  position: relative;
+  width: auto;
+  bottom: 0;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.project-slider :global(.swiper-pagination-bullet) {
+  width: 0.5rem;
+  height: 0.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  opacity: 1;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 0.25rem;
+}
+
+.project-slider :global(.swiper-pagination-bullet-active) {
+  width: 2rem;
+  background: #f97316;
+  box-shadow: 0 0 10px rgba(249, 115, 22, 0.5);
+} 

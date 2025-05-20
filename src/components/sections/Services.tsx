@@ -1,6 +1,7 @@
 import React from 'react';
-import { Film, Code, Pencil, Share, Wand2, Volume2 } from 'lucide-react';
+import { Film, Video, Headphones, Share2, PenTool, Megaphone, Layout, Image, Code } from 'lucide-react';
 import Container from '../ui/Container';
+import { motion } from 'framer-motion';
 
 interface ServiceCardProps {
   icon: React.ReactNode;
@@ -11,64 +12,153 @@ interface ServiceCardProps {
 
 const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, features }) => {
   return (
-    <div className="bg-zinc-900 p-8 rounded-xl hover:bg-zinc-800 transition-all duration-300 group">
-      <div className="w-14 h-14 rounded-lg bg-indigo-500/20 flex items-center justify-center text-indigo-500 mb-6 group-hover:bg-indigo-500 group-hover:text-white transition-all duration-300">
-        {icon}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+      className="group bg-zinc-900/50 backdrop-blur-sm p-8 rounded-[30px] border border-zinc-800 hover:border-orange-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/5 hover:-translate-y-1 relative overflow-hidden"
+      style={{
+        boxShadow: '15px 15px 30px rgb(25, 25, 25), -15px -15px 30px rgb(60, 60, 60)'
+      }}
+    >
+      <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+      <div className="relative z-10">
+        <div className="flex justify-center mb-6">
+          <div className="p-4 bg-zinc-800/50 rounded-xl group-hover:bg-orange-500/10 transition-colors duration-300"
+               style={{
+                 boxShadow: '8px 8px 16px rgb(25, 25, 25), -8px -8px 16px rgb(60, 60, 60)'
+               }}>
+            {icon}
+          </div>
+        </div>
+        <h3 className="text-xl font-semibold text-center mb-3 text-white group-hover:text-orange-500 transition-colors duration-300">
+          {title}
+        </h3>
+        <p className="text-zinc-400 text-center mb-6">
+          {description}
+        </p>
+        <ul className="space-y-3">
+          {features.map((feature, index) => (
+            <li key={index} className="text-zinc-400 flex items-center text-sm">
+              <span className="w-1.5 h-1.5 bg-orange-500 rounded-full mr-2"></span>
+              {feature}
+            </li>
+          ))}
+        </ul>
       </div>
-      <h3 className="text-xl font-semibold text-white mb-4">{title}</h3>
-      <p className="text-zinc-400 mb-6">{description}</p>
-      <ul className="space-y-2">
-        {features.map((feature, index) => (
-          <li key={index} className="text-zinc-500 flex items-center">
-            <span className="w-1.5 h-1.5 bg-indigo-500 rounded-full mr-2"></span>
-            {feature}
-          </li>
-        ))}
-      </ul>
-    </div>
+    </motion.div>
   );
 };
 
 const Services: React.FC = () => {
   const services = [
     {
-      icon: <Film className="w-7 h-7" />,
+      icon: <Film className="w-8 h-8 text-orange-500" />,
       title: "Video Editing",
-      description: "Professional editing services that bring your content to life with precision and creativity.",
+      description: "Professional video editing services that bring your content to life with precision and creativity.",
       features: [
-        "Short-form content optimization",
-        "Professional color grading",
-        "Sound design and mixing"
+        "Commercial video editing",
+        "Documentary editing",
+        "Color grading and correction",
+        "Sound design and mixing",
+        "Motion graphics integration"
       ]
     },
     {
-      icon: <Wand2 className="w-7 h-7" />,
-      title: "Motion Graphics",
-      description: "Dynamic visual elements that enhance your message and captivate your audience.",
+      icon: <Video className="w-8 h-8 text-orange-500" />,
+      title: "Short/Reel Editing",
+      description: "Engaging short-form content optimized for social media platforms.",
       features: [
-        "Custom animations",
-        "Brand identity animations",
-        "Animated infographics"
+        "Instagram Reels editing",
+        "YouTube Shorts creation",
+        "TikTok video editing",
+        "Quick-paced transitions",
+        "Trending effects and styles"
       ]
     },
     {
-      icon: <Pencil className="w-7 h-7" />,
+      icon: <Headphones className="w-8 h-8 text-orange-500" />,
+      title: "Podcast Editing",
+      description: "Professional podcast editing services to ensure crystal clear audio quality.",
+      features: [
+        "Audio cleanup and enhancement",
+        "Noise reduction",
+        "Music and sound effects",
+        "Episode formatting",
+        "Show notes creation"
+      ]
+    },
+    {
+      icon: <Share2 className="w-8 h-8 text-orange-500" />,
+      title: "Social Media Management",
+      description: "Comprehensive social media management across multiple platforms.",
+      features: [
+        "Instagram content strategy",
+        "Facebook page management",
+        "LinkedIn professional content",
+        "Content calendar planning",
+        "Analytics and reporting"
+      ]
+    },
+    {
+      icon: <PenTool className="w-8 h-8 text-orange-500" />,
       title: "Content Writing",
-      description: "Compelling storytelling that resonates with your target audience.",
+      description: "Engaging and SEO-optimized content that resonates with your audience.",
       features: [
-        "Script writing",
-        "Social media copy",
+        "Social media captions",
+        "Blog post writing",
+        "Website content",
+        "Email newsletters",
         "Brand storytelling"
       ]
     },
     {
-      icon: <Share className="w-7 h-7" />,
-      title: "Social Media Management",
-      description: "Strategic content management to grow your online presence.",
+      icon: <Megaphone className="w-8 h-8 text-orange-500" />,
+      title: "Advertisement",
+      description: "Creative advertising solutions to boost your brand's visibility.",
       features: [
-        "Content strategy",
-        "Platform-specific optimization",
-        "Analytics and reporting"
+        "Social media ads",
+        "Video advertisements",
+        "Display ads creation",
+        "Ad campaign strategy",
+        "Performance tracking"
+      ]
+    },
+    {
+      icon: <Layout className="w-8 h-8 text-orange-500" />,
+      title: "Motion Graphics",
+      description: "Dynamic and engaging motion graphics that bring your message to life.",
+      features: [
+        "Animated logos and intros",
+        "Lower thirds and titles",
+        "Infographic animations",
+        "Social media animations",
+        "Custom motion effects"
+      ]
+    },
+    {
+      icon: <Image className="w-8 h-8 text-orange-500" />,
+      title: "Thumbnail Designing",
+      description: "Eye-catching thumbnails that increase click-through rates and engagement.",
+      features: [
+        "YouTube thumbnails",
+        "Social media thumbnails",
+        "Custom graphics",
+        "Brand consistency",
+        "A/B testing designs"
+      ]
+    },
+    {
+      icon: <Code className="w-8 h-8 text-orange-500" />,
+      title: "Web Designing",
+      description: "Modern and responsive website designs that convert visitors into customers.",
+      features: [
+        "Responsive design",
+        "UI/UX optimization",
+        "E-commerce solutions",
+        "Portfolio websites",
+        "Landing pages"
       ]
     }
   ];
@@ -77,13 +167,22 @@ const Services: React.FC = () => {
     <section id="services" className="py-20 bg-black">
       <Container>
         <div className="max-w-xl mx-auto text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Our Services</h2>
-          <p className="text-zinc-400">
-            Comprehensive video production and content creation services to help your brand stand out in the digital space.
-          </p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">
+              Our Services
+            </h2>
+            <p className="text-zinc-400">
+              Comprehensive digital content creation and management services to help your brand stand out in the digital space.
+            </p>
+          </motion.div>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <ServiceCard 
               key={index}
