@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Container from '../ui/Container';
 import { ChevronDown, ChevronUp } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface FAQItem {
   question: string;
@@ -34,12 +35,12 @@ const FAQ: React.FC = () => {
   ];
 
   return (
-    <section id="faq" className="py-20 bg-zinc-950">
+    <section id="faq" className="py-12 sm:py-16 md:py-20 bg-zinc-950">
       <Container>
         <div className="max-w-3xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Frequently Asked Questions</h2>
-            <p className="text-zinc-400">
+          <div className="text-center mb-8 sm:mb-10 md:mb-12">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">Frequently Asked Questions</h2>
+            <p className="text-zinc-400 text-sm sm:text-base">
               Find answers to common questions about our video production services.
             </p>
           </div>
@@ -51,10 +52,10 @@ const FAQ: React.FC = () => {
                 className="bg-zinc-900 rounded-lg overflow-hidden"
               >
                 <button
-                  className="w-full px-6 py-4 text-left flex items-center justify-between"
+                  className="w-full px-4 sm:px-6 py-3 sm:py-4 text-left flex items-center justify-between"
                   onClick={() => setOpenIndex(openIndex === index ? null : index)}
                 >
-                  <span className="text-white font-medium">{item.question}</span>
+                  <span className="text-white text-sm sm:text-base font-medium">{item.question}</span>
                   {openIndex === index ? (
                     <ChevronUp className="w-5 h-5 text-orange-500" />
                   ) : (
@@ -62,20 +63,20 @@ const FAQ: React.FC = () => {
                   )}
                 </button>
                 {openIndex === index && (
-                  <div className="px-6 pb-4">
-                    <p className="text-zinc-400">{item.answer}</p>
+                  <div className="px-4 sm:px-6 pb-3 sm:pb-4">
+                    <p className="text-zinc-400 text-sm">{item.answer}</p>
                   </div>
                 )}
               </div>
             ))}
           </div>
 
-          <div className="mt-12 text-center">
-            <p className="text-zinc-400">
+          <div className="mt-8 sm:mt-10 md:mt-12 text-center">
+            <p className="text-zinc-400 text-sm sm:text-base">
               Still have questions? {" "}
-              <a href="#contact" className="text-orange-500 hover:text-orange-400">
+              <Link to="/contact" className="text-orange-500 hover:text-orange-400">
                 Contact us
-              </a>
+              </Link>
             </p>
           </div>
         </div>

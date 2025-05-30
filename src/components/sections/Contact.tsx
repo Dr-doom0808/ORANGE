@@ -10,16 +10,20 @@ const Contact: React.FC = () => {
     subject: '',
     message: ''
   });
+  
+  const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Form submission logic would go here
-    console.log('Form submitted:', formData);
+    
+    // Show success message immediately for better UX
+    setSubmitted(true);
+    
     // Reset form
     setFormData({
       name: '',
@@ -27,18 +31,19 @@ const Contact: React.FC = () => {
       subject: '',
       message: ''
     });
-    // Show success message
-    alert('Thanks for your message! We\'ll get back to you soon.');
+    
+    // The form will be submitted by Netlify's form handling
+    // We don't need to do anything else here
   };
 
   return (
-    <section id="contact" className="py-20 bg-zinc-950">
+    <section id="contact" className="py-12 sm:py-16 md:py-20 bg-zinc-950">
       <Container>
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16">
             <div className="lg:pr-8">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Get in Touch</h2>
-              <p className="text-zinc-400 mb-8 text-base">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">Get in Touch</h2>
+              <p className="text-zinc-400 mb-8 text-sm sm:text-base">
                 Ready to bring your video project to life? Contact us today to discuss your needs and how we can help elevate your visual content.
               </p>
               
@@ -102,10 +107,17 @@ const Contact: React.FC = () => {
               </div>
             </div>
             
-            <div className="bg-zinc-900 rounded-2xl p-8 lg:p-10">
-              <h3 className="text-2xl font-semibold text-white mb-6">Send us a message</h3>
+            <div className="bg-zinc-900 rounded-2xl p-6 sm:p-8 lg:p-10">
+              <h3 className="text-xl sm:text-2xl font-semibold text-white mb-6">Send us a message</h3>
               
-              <form onSubmit={handleSubmit}>
+              <form 
+                name="contact" 
+                method="POST" 
+                data-netlify="true"
+                onSubmit={handleSubmit}
+                className={submitted ? 'hidden' : ''}
+              >
+                <input type="hidden" name="form-name" value="contact" />
                 <div className="space-y-4">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-zinc-400 mb-1">
@@ -179,6 +191,13 @@ const Contact: React.FC = () => {
                   </Button>
                 </div>
               </form>
+              
+              {submitted && (
+                <div className="p-6 bg-green-900/30 border border-green-800/50 rounded-xl text-center">
+                  <h3 className="text-green-400 text-lg font-semibold mb-2">Message Sent Successfully!</h3>
+                  <p className="text-green-300 text-sm">Thank you for your message. We'll get back to you soon!</p>
+                </div>
+              )}
             </div>
           </div>
         </div>

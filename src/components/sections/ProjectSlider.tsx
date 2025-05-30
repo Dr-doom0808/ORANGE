@@ -120,14 +120,14 @@ const ProjectSlider: React.FC = () => {
     <section className="py-8 bg-zinc-950">
       <Container>
         <div className="text-center mb-6">
-          <h2 className="text-3xl font-bold mb-2 text-white">Latest Projects</h2>
-          <p className="text-zinc-400 max-w-2xl mx-auto text-sm">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-2 text-white">Latest Projects</h2>
+          <p className="text-zinc-400 max-w-2xl mx-auto text-xs sm:text-sm">
             Check out our recent work showcasing creative storytelling and technical excellence.
           </p>
         </div>
 
         <div 
-          className="relative"
+          className="relative w-full max-w-6xl mx-auto"
           onMouseMove={handleMouseMove}
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => setIsHovering(false)}

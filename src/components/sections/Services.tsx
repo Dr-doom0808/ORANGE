@@ -17,9 +17,9 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, fea
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="group bg-zinc-900/50 backdrop-blur-sm p-8 rounded-[30px] border border-zinc-800 hover:border-orange-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/5 hover:-translate-y-1 relative overflow-hidden"
+      className="group bg-zinc-900/50 backdrop-blur-sm p-6 sm:p-8 rounded-[30px] border border-zinc-800 hover:border-orange-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/5 hover:-translate-y-1 relative overflow-hidden"
       style={{
-        boxShadow: '15px 15px 30px rgb(25, 25, 25), -15px -15px 30px rgb(60, 60, 60)'
+        boxShadow: '15px 15px 30px rgb(25, 25, 25), -15px -15px 20px rgb(35, 35, 35)'
       }}
     >
       <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -27,26 +27,26 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, fea
         <div className="flex justify-center mb-6">
           <div className="p-4 bg-zinc-800/50 rounded-xl group-hover:bg-orange-500/10 transition-colors duration-300"
                style={{
-                 boxShadow: '8px 8px 16px rgb(25, 25, 25), -8px -8px 16px rgb(60, 60, 60)'
+                 boxShadow: '8px 8px 16px rgb(25, 25, 25), -8px -8px 10px rgb(35, 35, 35)'
                }}>
-            {icon}
-          </div>
+        {icon}
+      </div>
         </div>
-        <h3 className="text-xl font-semibold text-center mb-3 text-white group-hover:text-orange-500 transition-colors duration-300">
+        <h3 className="text-lg sm:text-xl font-semibold text-center mb-3 text-white group-hover:text-orange-500 transition-colors duration-300">
           {title}
         </h3>
-        <p className="text-zinc-400 text-center mb-6">
+        <p className="text-zinc-400 text-center text-sm sm:text-base mb-6">
           {description}
         </p>
         <ul className="space-y-3">
-          {features.map((feature, index) => (
-            <li key={index} className="text-zinc-400 flex items-center text-sm">
+        {features.map((feature, index) => (
+            <li key={index} className="text-zinc-400 flex items-center text-xs sm:text-sm">
               <span className="w-1.5 h-1.5 bg-orange-500 rounded-full mr-2"></span>
-              {feature}
-            </li>
-          ))}
-        </ul>
-      </div>
+            {feature}
+          </li>
+        ))}
+      </ul>
+    </div>
     </motion.div>
   );
 };
@@ -54,7 +54,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, fea
 const Services: React.FC = () => {
   const services = [
     {
-      icon: <Film className="w-8 h-8 text-orange-500" />,
+      icon: <Film className="w-7 h-7 sm:w-8 sm:h-8 text-orange-500" />,
       title: "Video Editing",
       description: "Professional video editing services that bring your content to life with precision and creativity.",
       features: [
@@ -66,7 +66,7 @@ const Services: React.FC = () => {
       ]
     },
     {
-      icon: <Video className="w-8 h-8 text-orange-500" />,
+      icon: <Video className="w-7 h-7 sm:w-8 sm:h-8 text-orange-500" />,
       title: "Short/Reel Editing",
       description: "Engaging short-form content optimized for social media platforms.",
       features: [
@@ -78,7 +78,7 @@ const Services: React.FC = () => {
       ]
     },
     {
-      icon: <Headphones className="w-8 h-8 text-orange-500" />,
+      icon: <Headphones className="w-7 h-7 sm:w-8 sm:h-8 text-orange-500" />,
       title: "Podcast Editing",
       description: "Professional podcast editing services to ensure crystal clear audio quality.",
       features: [
@@ -90,7 +90,7 @@ const Services: React.FC = () => {
       ]
     },
     {
-      icon: <Share2 className="w-8 h-8 text-orange-500" />,
+      icon: <Share2 className="w-7 h-7 sm:w-8 sm:h-8 text-orange-500" />,
       title: "Social Media Management",
       description: "Comprehensive social media management across multiple platforms.",
       features: [
@@ -102,7 +102,7 @@ const Services: React.FC = () => {
       ]
     },
     {
-      icon: <PenTool className="w-8 h-8 text-orange-500" />,
+      icon: <PenTool className="w-7 h-7 sm:w-8 sm:h-8 text-orange-500" />,
       title: "Content Writing",
       description: "Engaging and SEO-optimized content that resonates with your audience.",
       features: [
@@ -114,7 +114,7 @@ const Services: React.FC = () => {
       ]
     },
     {
-      icon: <Megaphone className="w-8 h-8 text-orange-500" />,
+      icon: <Megaphone className="w-7 h-7 sm:w-8 sm:h-8 text-orange-500" />,
       title: "Advertisement",
       description: "Creative advertising solutions to boost your brand's visibility.",
       features: [
@@ -126,7 +126,7 @@ const Services: React.FC = () => {
       ]
     },
     {
-      icon: <Layout className="w-8 h-8 text-orange-500" />,
+      icon: <Layout className="w-7 h-7 sm:w-8 sm:h-8 text-orange-500" />,
       title: "Motion Graphics",
       description: "Dynamic and engaging motion graphics that bring your message to life.",
       features: [
@@ -138,7 +138,7 @@ const Services: React.FC = () => {
       ]
     },
     {
-      icon: <Image className="w-8 h-8 text-orange-500" />,
+      icon: <Image className="w-7 h-7 sm:w-8 sm:h-8 text-orange-500" />,
       title: "Thumbnail Designing",
       description: "Eye-catching thumbnails that increase click-through rates and engagement.",
       features: [
@@ -150,7 +150,7 @@ const Services: React.FC = () => {
       ]
     },
     {
-      icon: <Code className="w-8 h-8 text-orange-500" />,
+      icon: <Code className="w-7 h-7 sm:w-8 sm:h-8 text-orange-500" />,
       title: "Web Designing",
       description: "Modern and responsive website designs that convert visitors into customers.",
       features: [
@@ -164,7 +164,7 @@ const Services: React.FC = () => {
   ];
 
   return (
-    <section id="services" className="py-20 bg-black">
+    <section id="services" className="py-12 sm:py-16 md:py-20 bg-black">
       <Container>
         <div className="max-w-xl mx-auto text-center mb-16">
           <motion.div
@@ -173,16 +173,16 @@ const Services: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">
               Our Services
             </h2>
-            <p className="text-zinc-400">
+          <p className="text-zinc-400 text-sm sm:text-base">
               Comprehensive digital content creation and management services to help your brand stand out in the digital space.
-            </p>
+          </p>
           </motion.div>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {services.map((service, index) => (
             <ServiceCard 
               key={index}

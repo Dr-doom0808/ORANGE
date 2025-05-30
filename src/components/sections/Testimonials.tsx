@@ -11,9 +11,9 @@ interface Testimonial {
   image?: string;
 }
 
-const testimonials: Testimonial[] = [
-  {
-    name: "Sarah Johnson",
+  const testimonials: Testimonial[] = [
+    {
+      name: "Sarah Johnson",
     role: "Content Creator",
     content: "Orange Cut Media transformed my raw footage into a masterpiece. Their attention to detail and creative approach exceeded my expectations. The final product was exactly what I envisioned and more!",
     rating: 5,
@@ -32,8 +32,8 @@ const testimonials: Testimonial[] = [
     content: "The team at Orange Cut Media consistently delivers high-quality work. Their ability to understand our brand and translate it into compelling video content is remarkable. A true partner in our success!",
     rating: 5,
     image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-  }
-];
+    }
+  ];
 
 const Testimonials: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -47,20 +47,20 @@ const Testimonials: React.FC = () => {
   };
 
   return (
-    <section className="py-20 bg-black relative overflow-hidden">
+    <section className="py-12 sm:py-16 md:py-20 bg-black relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-zinc-950 via-black to-zinc-950">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-orange-500/20 via-transparent to-transparent" />
-      </div>
-      
+        </div>
+        
       <Container className="relative">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8 sm:mb-10 md:mb-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="inline-block px-4 py-1.5 rounded-full bg-orange-500/20 text-orange-300 text-sm font-medium mb-6"
+              className="inline-block px-4 py-1.5 rounded-full bg-orange-500/20 text-orange-300 text-sm font-medium mb-4 sm:mb-6"
             >
               Client Testimonials
             </motion.div>
@@ -69,7 +69,7 @@ const Testimonials: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent"
+              className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent"
             >
               What Our Clients Say
             </motion.h2>
@@ -78,7 +78,7 @@ const Testimonials: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-zinc-400"
+              className="text-zinc-400 text-sm sm:text-base"
             >
               Don't just take our word for it - hear from some of our satisfied clients
             </motion.p>
@@ -92,66 +92,66 @@ const Testimonials: React.FC = () => {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -100 }}
                 transition={{ duration: 0.5 }}
-                className="bg-zinc-900/50 backdrop-blur-sm p-8 md:p-12 rounded-2xl border border-zinc-800"
+                className="bg-zinc-900/50 backdrop-blur-sm p-6 sm:p-8 md:p-10 lg:p-12 rounded-2xl border border-zinc-800"
               >
-                <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
+                <div className="flex flex-col md:flex-row items-center md:items-start gap-4 sm:gap-6">
                   {testimonials[currentIndex].image && (
                     <div className="flex-shrink-0">
-                      <img
+                    <img 
                         src={testimonials[currentIndex].image}
-                        alt={testimonials[currentIndex].name}
-                        className="w-20 h-20 rounded-full object-cover border-2 border-orange-500/50"
-                      />
-                    </div>
+                      alt={testimonials[currentIndex].name} 
+                        className="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover border-2 border-orange-500/50"
+                    />
+                  </div>
                   )}
                   <div className="flex-grow text-center md:text-left">
                     <div className="flex justify-center md:justify-start mb-4">
-                      {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
+                    {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
                         <Star key={i} className="w-5 h-5 text-orange-500 fill-orange-500" />
-                      ))}
-                    </div>
-                    <Quote className="w-8 h-8 text-orange-500/50 mb-4 mx-auto md:mx-0" />
-                    <p className="text-zinc-300 text-lg mb-6">
+                    ))}
+                  </div>
+                    <Quote className="w-6 h-6 sm:w-8 sm:h-8 text-orange-500/50 mb-4 mx-auto md:mx-0" />
+                    <p className="text-zinc-300 text-base sm:text-lg mb-4 sm:mb-6">
                       {testimonials[currentIndex].content}
                     </p>
                     <div>
-                      <h3 className="text-white font-semibold text-lg">
+                      <h3 className="text-white font-semibold text-base sm:text-lg">
                         {testimonials[currentIndex].name}
                       </h3>
-                      <p className="text-orange-500">
+                      <p className="text-orange-500 text-sm sm:text-base">
                         {testimonials[currentIndex].role}
                       </p>
-                    </div>
+                </div>
                   </div>
                 </div>
               </motion.div>
             </AnimatePresence>
 
-            <div className="flex justify-center mt-8 gap-4">
+            <div className="flex justify-center mt-6 sm:mt-8 gap-4">
               <button
                 onClick={prevTestimonial}
                 className="p-2 rounded-full bg-zinc-800 hover:bg-zinc-700 text-white transition-colors"
               >
-                <ChevronLeft className="w-6 h-6" />
+                <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
               </button>
               <button
                 onClick={nextTestimonial}
                 className="p-2 rounded-full bg-zinc-800 hover:bg-zinc-700 text-white transition-colors"
               >
-                <ChevronRight className="w-6 h-6" />
+                <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
               </button>
-            </div>
-
-            <div className="flex justify-center mt-6 gap-2">
-              {testimonials.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentIndex(index)}
+              </div>
+              
+            <div className="flex justify-center mt-4 sm:mt-6 gap-2">
+                {testimonials.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentIndex(index)}
                   className={`w-2 h-2 rounded-full transition-colors ${
                     index === currentIndex ? 'bg-orange-500' : 'bg-zinc-600'
-                  }`}
-                />
-              ))}
+                    }`}
+                  />
+                ))}
             </div>
           </div>
         </div>

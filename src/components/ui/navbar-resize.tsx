@@ -32,7 +32,6 @@ interface NavItemsProps {
 interface MobileNavProps {
   children: React.ReactNode;
   className?: string;
-  visible?: boolean;
 }
 
 interface MobileNavHeaderProps {
@@ -96,10 +95,11 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
         mass: 1,
       }}
       style={{
-        minWidth: "800px",
+        minWidth: "min(700px, 90vw)",
+        maxWidth: "100%",
       }}
       className={cn(
-        "relative z-[120] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-full px-4 py-1.5 lg:flex",
+        "relative z-[120] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-full px-4 py-2 lg:flex",
         visible ? "bg-white/80 dark:bg-neutral-950/80" : "bg-transparent",
         className,
       )}
@@ -141,12 +141,12 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
   );
 };
 
-export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
+export const MobileNav = ({ children, className }: MobileNavProps) => {
   return (
     <div
       className={cn(
-        "relative z-[120] mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between px-0 py-2 lg:hidden",
-        visible ? "bg-white/80 dark:bg-neutral-950/80" : "bg-transparent",
+        "relative z-[120] mx-auto flex w-full max-w-full flex-col items-center justify-between px-4 py-2 lg:hidden",
+        "bg-black", // Constant black background for mobile/tablet
         className,
       )}
     >
@@ -162,7 +162,7 @@ export const MobileNavHeader = ({
   return (
     <div
       className={cn(
-        "flex w-full flex-row items-center justify-between",
+        "flex w-full flex-row items-center justify-between px-4 gap-4",
         className,
       )}
     >
@@ -182,12 +182,21 @@ export const MobileNavMenu = ({
       {isOpen && (
         <div
           className={cn(
-            "fixed inset-x-0 top-16 z-50 w-full bg-black/95 backdrop-blur-lg border-t border-zinc-800 transform transition-transform duration-300 ease-in-out",
+            "fixed inset-x-0 top-16 z-50 w-full bg-black/95 backdrop-blur-lg border-t border-zinc-800 transform transition-transform duration-300 ease-in-out max-h-[80vh] overflow-y-auto max-w-full left-0 right-0",
             className,
           )}
         >
-          <div className="px-4 py-4 space-y-2">
-          {children}
+          <div className="flex justify-end px-4 pt-2">
+            <button
+              onClick={onClose}
+              className="text-zinc-400 hover:text-white min-h-[44px] min-w-[44px] flex items-center justify-center"
+              aria-label="Close menu"
+            >
+              <IconX className="w-5 h-5" />
+            </button>
+          </div>
+          <div className="px-4 py-2 space-y-2">
+            {children}
           </div>
         </div>
       )}
@@ -205,7 +214,7 @@ export const MobileNavToggle = ({
   return (
     <button
       onClick={onClick}
-      className="p-2 text-zinc-300 hover:text-white transition-colors"
+      className="p-2 text-zinc-300 hover:text-white transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center ml-4"
     >
       {isOpen ? (
         <IconX className="w-6 h-6" />
@@ -251,7 +260,7 @@ export const NavbarButton = ({
   | React.ComponentPropsWithoutRef<"button">
 )) => {
   const baseStyles =
-    "px-6 py-2.5 rounded-full text-sm font-medium relative cursor-pointer transition-all duration-300 inline-flex items-center justify-center";
+    "px-6 py-3 rounded-full text-sm font-medium relative cursor-pointer transition-all duration-300 inline-flex items-center justify-center min-h-[44px] min-w-[44px]";
 
   const variantStyles = {
     primary:

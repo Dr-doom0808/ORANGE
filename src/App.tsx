@@ -15,10 +15,10 @@ function App() {
 
   return (
     <Router>
-      <div className="bg-black text-white min-h-screen flex flex-col">
+      <div className="bg-zinc-900 text-white min-h-screen flex flex-col">
         <Header isMenuOpen={isMobileMenuOpen} setIsMenuOpen={setIsMobileMenuOpen} />
         {isMobileMenuOpen && <div className="h-screen md:h-0"></div>}
-        <main className={`flex-grow relative`}>
+        <main className="flex-grow relative">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<AboutPage />} />

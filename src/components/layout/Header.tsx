@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-import Container from '../ui/Container';
 import logo from '../../assets/logo.svg';
 import orangeText from '../../assets/orange1.svg';
 import AnimatedButton from '../ui/AnimatedButton';
@@ -9,8 +7,6 @@ import {
   Navbar,
   NavBody,
   NavItems,
-  NavbarLogo,
-  NavbarButton,
   MobileNav,
   MobileNavHeader,
   MobileNavMenu,
@@ -24,6 +20,7 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ isMenuOpen, setIsMenuOpen }) => {
   const navItems = [
+    { name: 'Home', link: '/' },
     { name: 'About Us', link: '/about' },
     { name: 'Services', link: '/services' },
     { name: 'Showcase', link: '/showcase' },
@@ -40,14 +37,14 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, setIsMenuOpen }) => {
             className="flex items-center cursor-pointer hover:opacity-80 transition-opacity"
             style={{ pointerEvents: 'auto' }}
           >
-            <div className="h-10 w-10 flex items-center justify-center">
+            <div className="h-8 w-8 flex items-center justify-center -mt-1 md:mt-0 md:h-10 md:w-10">
               <img 
                 src={logo} 
                 alt="Orangecut Media Logo" 
                 className="h-full w-full object-contain" 
               />
             </div>
-            <div className="h-8 w-28 flex items-center justify-center -ml-2 mt-3 ml-2.4">
+            <div className="h-6 w-20 flex items-center justify-center md:h-8 md:w-28 ml-[-7px] mt-3">
               <img 
                 src={orangeText} 
                 alt="Orangecut Media" 
@@ -66,44 +63,52 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, setIsMenuOpen }) => {
 
       <MobileNav>
         <MobileNavHeader>
-          <div className="relative z-[70]">
-            <a 
-              href="/" 
-              className="flex items-center cursor-pointer hover:opacity-80 transition-opacity"
-              style={{ pointerEvents: 'auto' }}
-            >
-              <div className="h-10 w-10 flex items-center justify-center">
-                <img 
-                  src={logo} 
-                  alt="Orangecut Media Logo" 
-                  className="h-full w-full object-contain" 
-                />
-              </div>
-              <div className="h-8 w-28 flex items-center justify-center -ml-2 mt-3 ml-6">
-                <img 
-                  src={orangeText} 
-                  alt="Orangecut Media" 
-                  className="h-full w-full object-contain" 
-                />
-              </div>
-            </a>
+          <div className="flex w-full justify-between items-center">
+            <div className="relative z-[70]">
+              <a 
+                href="/" 
+                className="flex items-center cursor-pointer hover:opacity-80 transition-opacity"
+                style={{ pointerEvents: 'auto' }}
+              >
+                <div className="h-7 w-7 flex items-center justify-center">
+                  <img 
+                    src={logo} 
+                    alt="Orangecut Media Logo" 
+                    className="h-full w-full object-contain" 
+                  />
+                </div>
+                <div className="h-6 w-20 flex items-center justify-center mt-1">
+                  <img 
+                    src={orangeText} 
+                    alt="Orangecut Media" 
+                    className="h-full w-full object-contain" 
+                  />
+                </div>
+              </a>
+            </div>
+            <div>
+              <MobileNavToggle isOpen={isMenuOpen} onClick={() => setIsMenuOpen(!isMenuOpen)} />
+            </div>
           </div>
-          <MobileNavToggle isOpen={isMenuOpen} onClick={() => setIsMenuOpen(!isMenuOpen)} />
         </MobileNavHeader>
         <MobileNavMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)}>
-          {navItems.map((item) => (
-            <Link
-              key={item.name}
-              to={item.link}
-              className="text-base font-medium text-white hover:text-orange-400 transition-colors"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {item.name}
-            </Link>
-          ))}
-          <AnimatedButton href="/contact" className="mt-4">
-            Get Started
-          </AnimatedButton>
+          <div className="flex flex-col space-y-2 py-3">
+            {navItems.map((item) => (
+              <Link
+                key={item.name}
+                to={item.link}
+                className="text-sm font-medium text-white hover:text-orange-400 transition-colors px-4 py-1.5"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {item.name}
+              </Link>
+            ))}
+            <div className="px-4 pt-1">
+              <AnimatedButton href="/contact" className="text-sm py-1.5">
+                Get Started
+              </AnimatedButton>
+            </div>
+          </div>
         </MobileNavMenu>
       </MobileNav>
     </Navbar>

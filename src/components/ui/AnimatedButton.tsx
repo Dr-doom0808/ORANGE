@@ -18,7 +18,7 @@ const AnimatedButton: React.FC<AnimatedButtonProps> = ({ href, className, childr
     >
       <a
         href={href}
-        className="relative inline-block p-px font-medium leading-6 text-sm text-white bg-neutral-900 shadow-md cursor-pointer rounded-xl shadow-orange-900/30 transition-all duration-300 ease-in-out hover:scale-105 active:scale-95 hover:shadow-orange-600/40"
+        className="relative inline-block p-px font-medium leading-6 text-sm text-white bg-neutral-900 shadow-md cursor-pointer rounded-xl shadow-orange-900/30 transition-all duration-300 ease-in-out hover:scale-105 active:scale-95 hover:shadow-orange-600/40 min-h-[2.75rem] min-w-[7rem]"
       >
         <span
           className="absolute inset-0 rounded-xl bg-gradient-to-r from-orange-500 via-orange-400 to-orange-600 p-[1.5px] opacity-0 transition-opacity duration-500 group-hover:opacity-100"

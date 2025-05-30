@@ -2,6 +2,7 @@ import React from 'react';
 import Container from '../ui/Container';
 import { motion } from 'framer-motion';
 import { Clock, Star, Zap, Shield, Users, Award } from 'lucide-react';
+import { CardSpotlight } from '../ui/card-spotlight';
 
 const features = [
   {
@@ -60,7 +61,7 @@ const WhyChooseUs = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent"
+            className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent leading-normal md:leading-normal"
           >
             Why Choose Orange Cut Media?
           </motion.h2>
@@ -83,17 +84,21 @@ const WhyChooseUs = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group bg-zinc-900/50 backdrop-blur-sm p-8 rounded-2xl border border-zinc-800 hover:border-orange-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/5 hover:-translate-y-1"
             >
-              <div className="mb-6 p-4 bg-zinc-800/50 rounded-xl w-fit group-hover:bg-orange-500/10 transition-colors duration-300">
-                {feature.icon}
-              </div>
-              <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-orange-500 transition-colors duration-300">
-                {feature.title}
-              </h3>
-              <p className="text-zinc-400 leading-relaxed">
-                {feature.description}
-              </p>
+              <CardSpotlight 
+                className="bg-black p-8 rounded-2xl border border-zinc-700 h-full"
+                color="rgba(255, 255, 255, 0.07)"
+              >
+                <div className="mb-6 p-3 bg-zinc-800 rounded-full w-fit transition-all duration-300 group-hover/spotlight:bg-zinc-700 group-hover/spotlight:scale-110 group-hover/spotlight:shadow-[0_0_15px_2px_rgba(255,255,255,0.1)]">
+                  {feature.icon}
+                </div>
+                <h3 className="text-xl font-semibold text-white mb-3 group-hover/spotlight:text-white transition-colors duration-300">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-300 leading-relaxed">
+                  {feature.description}
+                </p>
+              </CardSpotlight>
             </motion.div>
           ))}
         </div>
