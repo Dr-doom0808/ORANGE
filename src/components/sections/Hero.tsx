@@ -3,7 +3,7 @@ import Container from '../ui/Container';
 import { Play, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import myShortVideo from '../../assets/video4.mp4';
+import myShortVideo from '../../assets/video.mp4';
 import workVideo from '../../assets/work.mp4';
 import { BackgroundBeamsWithCollision } from '../ui/background-beam';
 import FloatingParticle from '../ui/FloatingParticle';
